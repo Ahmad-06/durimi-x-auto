@@ -1,0 +1,22 @@
+{
+    "author": {
+        "email": "ahmad@shahzad.dev",
+        "name": "Ahmad Shahzad",
+        "url": "https://shahzad.dev"
+    },
+    "dependencies": {},
+    "description": "A Twitter automation tool built with Puppeteer.",
+    "devDependencies": {},
+    "license": "MIT",
+    "main": "main.js",
+    "name": "x-auto",
+    "private": true,
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Ahmad-06/durimi-x-auto"
+    },
+    "scripts": {
+        "start": "node ."
+    },
+    "version": "0.0.1"
+}
