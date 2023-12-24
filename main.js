@@ -14,6 +14,8 @@ njk.configure(path.join(__dirname, 'views'), {
 });
 app.set('view engine', 'html');
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(require(path.join(__dirname, 'router', 'router')));
 
 app.listen(PORT, () => {
