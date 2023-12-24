@@ -6,7 +6,8 @@
     },
     "dependencies": {
         "dotenv": "^16.3.1",
-        "express": "^4.18.2"
+        "express": "^4.18.2",
+        "nunjucks": "^3.2.4"
     },
     "description": "A Twitter automation tool built with Puppeteer.",
     "devDependencies": {
