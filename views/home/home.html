@@ -4,10 +4,58 @@
 {% block title %} X-AUTO {% endblock %}
 
 <!-- THE STYLES BLOCK -->
-{% block styles %} {% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="/css/home/home.css" />
+{% endblock %}
 
 <!-- THE CONTENT BLOCK -->
-{% block content %} {% endblock %}
+{% block content %}
+<!-- THE RETWEET FORM -->
+<form class="form retweet-form" data-retweet-id="0" onsubmit="event.preventDefault();">
+    <!-- THE INDEX -->
+    <p class="form-index" class="hidden">0</p>
+
+    <!-- THE HEADING -->
+    <h3 class="form-heading" data-retweet-id="0">Create a Retweet</h3>
+
+    <!-- THE ID -->
+    <input type="number" name="id" class="form-input hidden" data-retweet-id="0" value="0" />
+
+    <!-- THE FORM CONTAINER -->
+    <div class="form-container">
+        <!-- THE FORM DIVISION -->
+        <div class="form-division">
+            <!-- THE RETWEET LINK -->
+            <input
+                type="url"
+                name="link"
+                class="form-input"
+                data-retweet-id="0"
+                placeholder="http(s)://(www.)twitter.com/username/status/123456"
+                pattern="^https:\/\/twitter\.com\/(\w*)\/status\/(\d*)"
+                required />
+
+            <!-- THE TIME -->
+            <input type="datetime-local" name="time" class="form-input" data-retweet-id="0" />
+        </div>
+
+        <!-- THE FORM DIVISION -->
+        <div class="form-division">
+            <!-- THE BUTTONS -->
+            <section class="form-buttons" data-retweet-id="0">
+                <button class="form-button form-button-schedule" data-retweet-id="0">Schedule</button>
+
+                <button class="form-button form-button-automate" data-retweet-id="0">
+                    <i class="fa-regular fa-paper-plane"></i>
+                </button>
+
+                <button class="form-button form-button-publish" data-retweet-id="0">Publish Now</button>
+            </section>
+        </div>
+    </div>
+</form>
+<!-- END RETWEET FORM -->
+{% endblock %}
 
 <!-- THE SCRIPTS BLOCK -->
 {% block scripts %} {% endblock %}
