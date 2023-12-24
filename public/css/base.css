@@ -77,4 +77,113 @@ h6 {
   font-family: "Inria Sans", sans-serif;
 }
 
+body {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  color: #cccccc;
+  background-color: #111111;
+  display: grid;
+  grid-gap: 25px;
+  grid-template-rows: 75px auto 50px;
+}
+body .hidden {
+  display: none;
+}
+body .container {
+  width: 100%;
+  height: inherit;
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 0 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (min-width: 720px) {
+  body .mobile-enabled {
+    display: none;
+  }
+}
+@media screen and (max-width: 719px) {
+  body .desktop-enabled {
+    display: none;
+  }
+}
+body a {
+  color: #cccccc;
+  text-decoration: none;
+}
+body a:hover {
+  color: #7cc0ff;
+  text-decoration: underline;
+}
+body #header {
+  width: 100%;
+  height: 75px;
+  box-shadow: 0 0 0 1px #555555;
+}
+body #header .container {
+  display: grid;
+  grid-template-columns: 0.75fr 3.25fr;
+}
+body #header .container .icon {
+  font-size: 24px;
+}
+body #header .container #logo h1 a {
+  font-weight: bolder;
+  text-transform: uppercase;
+}
+body #header .container #menu {
+  gap: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+body #header .container #menu a {
+  font-size: 18px;
+  text-transform: uppercase;
+}
+body #header .container #menu button {
+  cursor: pointer;
+  color: #7cc0ff;
+  border-color: #7cc0ff;
+  background-color: transparent;
+  border: 3px solid;
+  padding: 5px 25px;
+  font-size: 16px;
+  font-weight: bolder;
+  text-transform: uppercase;
+}
+@media screen and (max-width: 719px) {
+  body #header .container #menu button {
+    border: 2px solid;
+    padding: 5px 10px;
+  }
+  body #header .container #menu button .icon {
+    font-size: 18px;
+  }
+}
+body #header .container #menu button:hover {
+  color: #111111;
+  border-color: #7cc0ff;
+  background-color: #7cc0ff;
+  box-shadow: 3px 3px #ffffff;
+}
+body #header .container #menu button:hover:active {
+  box-shadow: none;
+  transform: translate(3px, 3px);
+}
+body #footer {
+  width: 100%;
+  height: 50px;
+  box-shadow: 0 0 0 1px #555555;
+}
+body #footer .container #copyright {
+  font-weight: bold;
+}
+body #footer .container #copyright a {
+  color: #7cc0ff;
+}
+
 /*# sourceMappingURL=base.css.map */
