@@ -74,6 +74,17 @@
             </div>
         </footer>
 
+        <!-- THE ERROR -->
+        <div id="error-overlay" class="hidden"></div>
+        <div id="error-modal" class="hidden">
+            <h3 id="error-modal-heading"></h3>
+            <p id="error-modal-message"></p>
+            <pre id="error-modal-content"></pre>
+            <button id="error-modal-close" onclick="closeError()">
+                <i class="fa-regular fa-circle-xmark"></i>
+            </button>
+        </div>
+
         <!-- THE SCRIPTS -->
         <script>
             let apiURL = '/api/v1';
@@ -85,6 +96,7 @@
                 },
             };
         </script>
+        <script src="/js/base/handleError.js"></script>
         <script src="/js/base/handleIndicator.js"></script>
 
         <!-- THE SCRIPTS BLOCK -->
