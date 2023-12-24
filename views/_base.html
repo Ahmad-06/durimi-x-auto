@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{% block title %} {% endblock %}</title>
+        <link rel="stylesheet" href="/css/base.css" />
+        <!-- THE STYLES BLOCK -->
+        {% block styles %} {% endblock %}
+    </head>
+    <body>
+        <!-- THE HEADER -->
+        <header id="header">
+            <!-- THE CONTAINER -->
+            <div class="container">
+                <!-- THE LOGO -->
+                <section id="logo">
+                    <h1>
+                        <a href="/">
+                            <i class="fa-brands fa-x-twitter mobile-enabled icon"></i>
+                            <span class="desktop-enabled">Twitter</span>
+                        </a>
+                    </h1>
+                </section>
+
+                <!-- THE MENU -->
+                <nav id="menu">
+                    <a href="/timesheet">
+                        <i class="fa-regular fa-calendar mobile-enabled icon"></i>
+                        <span class="desktop-enabled">Timesheet</span>
+                    </a>
+                    <a href="/tweets">
+                        <i class="fa-brands fa-square-twitter mobile-enabled icon"></i>
+                        <span class="desktop-enabled">Posts</span>
+                    </a>
+                    <a href="/retweets">
+                        <i class="fa-solid fa-retweet mobile-enabled icon"></i>
+                        <span class="desktop-enabled">Posts</span>
+                    </a>
+                    <button onclick="handleLogin()">
+                        <i class="fa-solid fa-arrow-right-to-bracket mobile-enabled icon"></i>
+                        <span class="desktop-enabled">Login</span>
+                    </button>
+                </nav>
+            </div>
+        </header>
+
+        <!-- THE CONTENT -->
+        <main id="content">
+            <!-- THE CONTAINER -->
+            <div class="container">
+                <!-- THE CONTENT BLOCK -->
+                {% block content %} {% endblock %}
+            </div>
+        </main>
+
+        <!-- THE FOOTER -->
+        <footer id="footer">
+            <!-- THE CONTAINER -->
+            <div class="container">
+                <!-- THE COPYRIGHT -->
+                <p id="copyright">Copyright (c) 2023 - <a href="mailto:ahmad@shahzad.dev">Ahmad Shahzad</a></p>
+            </div>
+        </footer>
+    </body>
+</html>
