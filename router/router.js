@@ -1,8 +1,7 @@
+const path = require('node:path');
 const express = require('express');
 
 const router = express.Router();
 module.exports = router;
 
-router.get('/', (req, res) => {
-    res.send('Hello, Router!');
-});
+router.use('/', require(path.join(__dirname, 'public', 'public')));
