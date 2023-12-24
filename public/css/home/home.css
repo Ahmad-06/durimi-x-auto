@@ -62,7 +62,7 @@
 }
 .form .form-textarea {
   resize: none;
-  height: 150px;
+  height: 125px;
   padding: 15px;
 }
 .form .form-select {
@@ -167,7 +167,7 @@
 }
 .form .form-media .form-media-drop-zone {
   cursor: pointer;
-  height: 100px;
+  height: 75px;
   border: 2px dashed #555555;
   display: flex;
   align-items: center;
@@ -189,7 +189,7 @@
   overflow: auto;
 }
 .form .form-media .form-media-gallery img {
-  max-height: 150px;
+  max-height: 100px;
 }
 .form .form-media .form-media-gallery:not(.secondary) img:hover {
   cursor: no-drop;
@@ -225,8 +225,10 @@
     max-width: 300px;
   }
 }
-.form.retweet-form[data-retweet-id="0"] .form-index {
-  display: none !important;
+
+body #content .container {
+  flex-direction: column;
+  gap: 50px;
 }
 
 /*# sourceMappingURL=home.css.map */

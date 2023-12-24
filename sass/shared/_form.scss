@@ -79,7 +79,7 @@
     .form-textarea {
         resize: none;
 
-        height: 150px;
+        height: 125px;
         padding: 15px;
     }
 
@@ -208,7 +208,7 @@
         .form-media-drop-zone {
             cursor: pointer;
 
-            height: 100px;
+            height: 75px;
 
             border: 2px dashed $border;
 
@@ -236,7 +236,7 @@
             overflow: auto;
 
             img {
-                max-height: 150px;
+                max-height: 100px;
             }
 
             &:not(.secondary) {
@@ -285,9 +285,5 @@
                 }
             }
         }
-    }
-
-    &.retweet-form[data-retweet-id='0'] .form-index {
-        display: none !important;
     }
 }
