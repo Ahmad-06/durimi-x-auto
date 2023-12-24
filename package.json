@@ -6,7 +6,9 @@
     },
     "dependencies": {},
     "description": "A Twitter automation tool built with Puppeteer.",
-    "devDependencies": {},
+    "devDependencies": {
+        "nodemon": "^3.0.2"
+    },
     "license": "MIT",
     "main": "main.js",
     "name": "x-auto",
@@ -16,7 +18,8 @@
         "url": "https://github.com/Ahmad-06/durimi-x-auto"
     },
     "scripts": {
-        "start": "node ."
+        "start": "node .",
+        "start:dev": "nodemon -e js,html"
     },
     "version": "0.0.1"
 }
