@@ -121,8 +121,8 @@
                             <!-- THE DELETE BUTTON -->
                             <button
                                 class="form-button form-button-delete"
-                                data-form-id="{{ retweets.id }}"
-                                onclick="deleteRetweet('{{ retweets.id }}')">
+                                data-retweet-id="{{ retweet.id }}"
+                                onclick="deleteRetweet('{{ retweet.id }}')">
                                 <i class="fa-regular fa-trash-can"></i>
                             </button>
                         </section>
@@ -234,8 +234,8 @@
                             <!-- THE DELETE BUTTON -->
                             <button
                                 class="form-button form-button-delete"
-                                data-form-id="{{ retweets.id }}"
-                                onclick="deleteRetweet('{{ retweets.id }}')">
+                                data-retweet-id="{{ retweet.id }}"
+                                onclick="deleteRetweet('{{ retweet.id }}')">
                                 <i class="fa-regular fa-trash-can"></i>
                             </button>
                         </section>
@@ -251,6 +251,7 @@
 <!-- THE SCRIPTS BLOCK -->
 {% block scripts %}
 <script src="/js/common/retweets/handleCreateRetweet.js"></script>
+<script src="/js/common/retweets/handleDeleteRetweet.js"></script>
 
 <script src="/js/common/handleTabSwitch.js"></script>
 <script src="/js/common/handleReOrderSwitch.js"></script>
