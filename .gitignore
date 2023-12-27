@@ -135,3 +135,6 @@ dist
 # Sass-generated files
 *.css
 *.css.map
+
+# Media files
+public/media
