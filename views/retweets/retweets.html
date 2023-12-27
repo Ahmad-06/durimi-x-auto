@@ -1,0 +1,68 @@
+{% extends '../_base.html' %}
+
+<!-- THE TITLE BLOCK -->
+{% block title %} Retweets | X-AUTO {% endblock %}
+
+<!-- THE STYLES BLOCK -->
+{% block styles %} {% endblock %}
+
+<!-- THE CONTENT BLOCK -->
+{% block content %}
+<!-- THE TAB SWITCHES -->
+<section id="tab-switches">
+    <!-- THE AUTOMATED SWITCH -->
+    <button
+        class="tab-switch {% if retweets.automated.length > 0 %} active {% endif %}"
+        data-tab="automated"
+        onclick="handleTabSwitch('automated')">
+        Automated Retweets
+    </button>
+
+    <!-- THE SCHEDULED SWITCH -->
+    <button
+        class="tab-switch {% if retweets.automated.length < 1 %} active {% endif %}"
+        data-tab="scheduled"
+        onclick="handleTabSwitch('scheduled')">
+        Scheduled Retweets
+    </button>
+</section>
+
+<!-- THE TABS -->
+<section id="tabs">
+    <!-- THE AUTOMATED TAB -->
+    <section class="tab {% if retweets.automated.length <= 0 %} hidden {% endif %}" data-tab="automated">
+        <!-- THE TAB TITLE -->
+        <h3 class="tab-title">Automated Retweets</h3>
+
+        <!-- THE RE-ORDER BUTTON -->
+        <button class="re-order" data-tab="automated" onclick="handleReOrderSwitch('retweets', 'automated')">
+            Re-Order Retweets
+        </button>
+
+        <!-- THE RETWEETS -->
+        <section class="retweets" data-tab="automated">{% for post in retweets.automated %} {% endfor %}</section>
+    </section>
+
+    <!-- THE SCHEDULED TAB -->
+    <section class="tab {% if retweets.automated.length > 0 %} hidden {% endif %}" data-tab="scheduled">
+        <!-- THE TAB TITLE -->
+        <h3 class="tab-title">Scheduled Retweets</h3>
+
+        <!-- THE RE-ORDER BUTTON -->
+        <button class="re-order" data-tab="scheduled" onclick="handleReOrderSwitch('retweets', 'scheduled')">
+            Re-Order Retweets
+        </button>
+
+        <!-- THE RETWEETS -->
+        <section class="retweets" data-tab="automated">{% for post in retweets.scheduled %} {% endfor %}</section>
+    </section>
+</section>
+{% endblock %}
+
+<!-- THE SCRIPTS BLOCK -->
+{% block scripts %}
+<script src="/js/common/retweets/handleCreateRetweet.js"></script>
+
+<script src="/js/common/handleTabSwitch.js"></script>
+<script src="/js/common/handleReOrderSwitch.js"></script>
+{% endblock %}
