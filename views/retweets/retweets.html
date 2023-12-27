@@ -4,7 +4,9 @@
 {% block title %} Retweets | X-AUTO {% endblock %}
 
 <!-- THE STYLES BLOCK -->
-{% block styles %} {% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="/css/common/re-no-tweets.css" />
+{% endblock %}
 
 <!-- THE CONTENT BLOCK -->
 {% block content %}
@@ -40,7 +42,106 @@
         </button>
 
         <!-- THE RETWEETS -->
-        <section class="retweets" data-tab="automated">{% for post in retweets.automated %} {% endfor %}</section>
+        <section class="retweets" data-tab="automated">
+            {% for retweet in retweets.automated %}
+            <form
+                class="form retweet retweet-form {% if retweet.status == 'active' %}failed-form{% endif %}"
+                data-retweet-id="{{ retweet.id }}"
+                onsubmit="event.preventDefault();">
+                <!-- THE INDEX -->
+                <p class="form-index hidden">{{ loop.index }}</p>
+
+                <!-- THE HEADING -->
+                <h3 class="form-heading" data-retweet-id="{{ retweet.id }}">Create a Retweet</h3>
+
+                <!-- THE ID -->
+                <input
+                    type="number"
+                    name="id"
+                    class="form-input hidden"
+                    data-retweet-id="{{ retweet.id }}"
+                    value="{{ retweet.id }}" />
+
+                <!-- THE FORM CONTAINER -->
+                <div class="form-container">
+                    <!-- THE FORM DIVISION -->
+                    <div class="form-division">
+                        <!-- THE RETWEET LINK -->
+                        <input
+                            type="url"
+                            name="link"
+                            class="form-input"
+                            data-retweet-id="{{ retweet.id }}"
+                            placeholder="http(s)://(www.)twitter.com/username/status/123456"
+                            pattern="^https:\/\/twitter\.com\/(\w*)\/status\/(\d*)"
+                            value="{{ retweet.link }}" />
+
+                        <!-- THE TIME -->
+                        <input
+                            type="datetime-local"
+                            name="time"
+                            class="form-input"
+                            data-retweet-id="{{ retweet.id }}"
+                            value="{{ retweet.time }}" />
+                    </div>
+
+                    <!-- THE PRIORITY -->
+                    <input
+                        type="number"
+                        name="priority"
+                        class="form-input hidden"
+                        data-retweet-id="{{ retweet.id }}"
+                        value="{{ retweet.priority }}" />
+
+                    <!-- THE FORM DIVISION -->
+                    <div class="form-division">
+                        <!-- THE BUTTONS -->
+                        <section class="form-buttons" data-retweet-id="{{ retweet.id }}">
+                            <button
+                                class="form-button form-button-automate"
+                                data-retweet-id="{{ retweet.id }}"
+                                onclick="createRetweet('{{ retweet.id }}', 'automated')">
+                                Update
+                            </button>
+
+                            <button
+                                class="form-button form-button-schedule"
+                                data-retweet-id="{{ retweet.id }}"
+                                onclick="createRetweet('{{ retweet.id }}', 'scheduled')">
+                                <i class="fa-solid fa-clock-rotate-left" style="font-size: 18px"></i>
+                            </button>
+
+                            <button
+                                class="form-button form-button-publish"
+                                data-retweet-id="{{ retweet.id }}"
+                                onclick="createRetweet('{{ retweet.id }}', 'publish')">
+                                Publish Now
+                            </button>
+
+                            <!-- THE DELETE BUTTON -->
+                            <button
+                                class="form-button form-button-delete"
+                                data-form-id="{{ retweets.id }}"
+                                onclick="deleteRetweet('{{ retweets.id }}')">
+                                <i class="fa-regular fa-trash-can"></i>
+                            </button>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- THE EXTRA INFO -->
+                <section class="form-extra-info">
+                    <!-- THE PUBLISH TIME -->
+                    <h4 class="publish-time">
+                        <span data-publish-id="{{ loop.index }}" class="publish-time-date">2023-09-11</span> |
+                        <span data-publish-id="{{ loop.index }}" class="publish-time-day">Monday</span> |
+                        <span data-publish-id="{{ loop.index }}" class="publish-time-time">09:00 PM</span>
+                    </h4>
+                    <!-- END PUBLISH TIME -->
+                </section>
+            </form>
+            {% endfor %}
+        </section>
     </section>
 
     <!-- THE SCHEDULED TAB -->
@@ -54,7 +155,95 @@
         </button>
 
         <!-- THE RETWEETS -->
-        <section class="retweets" data-tab="automated">{% for post in retweets.scheduled %} {% endfor %}</section>
+        <section class="retweets" data-tab="automated">
+            {% for retweet in retweets.scheduled %}
+            <form
+                class="form retweet retweet-form {% if retweet.status == 'active' %}failed-form{% endif %}"
+                data-retweet-id="{{ retweet.id }}"
+                onsubmit="event.preventDefault();">
+                <!-- THE INDEX -->
+                <p class="form-index hidden">{{ loop.index }}</p>
+
+                <!-- THE HEADING -->
+                <h3 class="form-heading" data-retweet-id="{{ retweet.id }}">Create a Retweet</h3>
+
+                <!-- THE ID -->
+                <input
+                    type="number"
+                    name="id"
+                    class="form-input hidden"
+                    data-retweet-id="{{ retweet.id }}"
+                    value="{{ retweet.id }}" />
+
+                <!-- THE FORM CONTAINER -->
+                <div class="form-container">
+                    <!-- THE FORM DIVISION -->
+                    <div class="form-division">
+                        <!-- THE RETWEET LINK -->
+                        <input
+                            type="url"
+                            name="link"
+                            class="form-input"
+                            data-retweet-id="{{ retweet.id }}"
+                            placeholder="http(s)://(www.)twitter.com/username/status/123456"
+                            pattern="^https:\/\/twitter\.com\/(\w*)\/status\/(\d*)"
+                            value="{{ retweet.link }}" />
+
+                        <!-- THE TIME -->
+                        <input
+                            type="datetime-local"
+                            name="time"
+                            class="form-input"
+                            data-retweet-id="{{ retweet.id }}"
+                            value="{{ retweet.time }}" />
+                    </div>
+
+                    <!-- THE PRIORITY -->
+                    <input
+                        type="number"
+                        name="priority"
+                        class="form-input hidden"
+                        data-retweet-id="{{ retweet.id }}"
+                        value="{{ retweet.priority }}" />
+
+                    <!-- THE FORM DIVISION -->
+                    <div class="form-division">
+                        <!-- THE BUTTONS -->
+                        <section class="form-buttons" data-retweet-id="{{ retweet.id }}">
+                            <button
+                                class="form-button form-button-schedule"
+                                data-retweet-id="{{ retweet.id }}"
+                                onclick="createRetweet('{{ retweet.id }}', 'scheduled')">
+                                Schedule
+                            </button>
+
+                            <button
+                                class="form-button form-button-automate"
+                                data-retweet-id="{{ retweet.id }}"
+                                onclick="createRetweet('{{ retweet.id }}', 'automated')">
+                                <i class="fa-regular fa-paper-plane"></i>
+                            </button>
+
+                            <button
+                                class="form-button form-button-publish"
+                                data-retweet-id="{{ retweet.id }}"
+                                onclick="createRetweet('{{ retweet.id }}', 'publish')">
+                                Publish Now
+                            </button>
+
+                            <!-- THE DELETE BUTTON -->
+                            <button
+                                class="form-button form-button-delete"
+                                data-form-id="{{ retweets.id }}"
+                                onclick="deleteRetweet('{{ retweets.id }}')">
+                                <i class="fa-regular fa-trash-can"></i>
+                            </button>
+                        </section>
+                    </div>
+                </div>
+            </form>
+            {% endfor %}
+        </section>
     </section>
 </section>
 {% endblock %}
