@@ -1,5 +1,5 @@
 const createRetweet = async (index, type) => {
-    const apiType = index === '0' ? 'create' : 'update';
+    const apiType = index === 0 ? 'create' : 'update';
     const apiEndpoint = type === 'publish' ? api.retweets.publish : api.retweets[apiType];
 
     const retweet = {
