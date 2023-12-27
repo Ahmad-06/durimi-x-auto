@@ -14,6 +14,7 @@ const seedDB = async () => {
                 type TEXT NOT NULL,
                 message TEXT,
                 link TEXT,
+                tags TEXT,
                 media TEXT,
                 time TEXT,
                 timestamp TIMESTAMP,
