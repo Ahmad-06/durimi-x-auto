@@ -93,11 +93,24 @@
         <script>
             let apiURL = '/api/v1';
             let apiMiscURL = `${apiURL}/misc`;
+            let apiTweetsURL = `${apiURL}/tweets`;
             let apiRetweetsURL = `${apiURL}/retweets`;
 
             let api = {
                 misc: {
                     indicator: `${apiMiscURL}/indicator`,
+                },
+                tweets: {
+                    get: {
+                        all: `${apiTweetsURL}/all`,
+                        automated: `${apiTweetsURL}/automated`,
+                        scheduled: `${apiTweetsURL}/scheduled`,
+                    },
+                    create: `${apiTweetsURL}/create`,
+                    update: `${apiTweetsURL}/update`,
+                    delete: `${apiTweetsURL}/delete`,
+                    publish: `${apiTweetsURL}/publish`,
+                    reOrder: `${apiTweetsURL}/re-order`,
                 },
                 retweets: {
                     get: {
