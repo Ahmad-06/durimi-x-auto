@@ -1,5 +1,5 @@
-const deleteRetweet = async (id) => {
-    const resp = await fetch(api.retweets.delete, {
+const deleteTweet = async (id) => {
+    const resp = await fetch(api.tweets.delete, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json; charset=UTF-8',
@@ -8,7 +8,7 @@ const deleteRetweet = async (id) => {
     });
     const { success, error } = await resp.json();
 
-    if (!success) return handleError('There was an error when deleting the retweet!', error);
+    if (!success) return handleError('There was an error when deleting the tweet!', error);
 
-    window.location.href = '/retweets';
+    window.location.href = '/tweets';
 };
