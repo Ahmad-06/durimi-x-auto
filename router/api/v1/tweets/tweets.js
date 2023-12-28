@@ -6,4 +6,5 @@ module.exports = tweets;
 
 tweets.use('/', require(path.join(__dirname, 'routes', 'tweets.get')));
 tweets.use('/create', require(path.join(__dirname, 'routes', 'tweets.create')));
+tweets.use('/update', require(path.join(__dirname, 'routes', 'tweets.update')));
 tweets.use('/delete', require(path.join(__dirname, 'routes', 'tweets.delete')));

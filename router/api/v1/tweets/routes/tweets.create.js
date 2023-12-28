@@ -23,6 +23,7 @@ CREATE.post('/', async (req, res) => {
     // Get user submission.
     let type = req?.body?.type ? req?.body?.type : null;
     let message = req?.body?.message ? req?.body?.message : null;
+    let link = req?.body?.link ? req?.body?.link : null;
     let tags = req?.body?.tags ? req?.body?.tags : null;
     let media = req?.body?.media && req?.body?.media !== '[]' ? req?.body?.media : null;
     let time = req?.body?.time ? req?.body?.time : null;
@@ -133,6 +134,8 @@ CREATE.post('/', async (req, res) => {
     const tweet = {
         type,
         message,
+        link,
+        tags,
         media: JSON.stringify(images),
         time,
         timestamp,
@@ -146,17 +149,21 @@ CREATE.post('/', async (req, res) => {
             (
                 type,
                 message,
+                link,
+                tags,
                 media,
                 time,
                 timestamp,
                 priority,
                 status
-            ) VALUES (?, ?, ?, ?, ?, ?, ?);
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
         `;
 
         const params = [
             tweet.type,
             tweet.message,
+            tweet.link,
+            tweet.tags,
             tweet.media,
             tweet.time,
             tweet.timestamp,
