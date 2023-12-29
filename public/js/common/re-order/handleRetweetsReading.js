@@ -21,6 +21,148 @@ let type;
 })();
 
 const render = {
+    tweets: (posts) => {
+        let articles = '';
+
+        // prettier-ignore
+        for (let i = 0; i < posts.length; i++) {
+            const post = posts[i];
+            const article = `
+                <form
+                    class="form tweet tweet-form"
+                    data-tweet-id="${ post.id }"
+                    onsubmit="event.preventDefault();">
+                    <!-- THE INDEX -->
+                    <p class="form-index">${ i + 1 }</p>
+
+                    <!-- THE ID -->
+                    <input
+                        type="number"
+                        name="id"
+                        class="form-input hidden"
+                        data-tweet-id="${ post.id }"
+                        value="${ post.id }" />
+
+                    <!-- THE FORM CONTAINER -->
+                    <div class="form-container">
+                        <!-- THE FORM DIVISION -->
+                        <div class="form-division">
+                            <!-- THE MESSAGE -->
+                            <textarea
+                                name="message"
+                                class="form-textarea"
+                                data-tweet-id="${ post.id }"
+                                placeholder="What is happening?!">
+${ post.message }</textarea
+                            >
+
+                            <!-- THE LINK -->
+                            <!-- <input
+                                type="url"
+                                name="link"
+                                class="form-input"
+                                data-tweet-id="${ post.id }"
+                                placeholder="http(s)://(www.)example.org"
+                                value="${ post.link }" /> -->
+
+                            <!-- THE TAGS -->
+                            <input
+                                type="text"
+                                name="tags"
+                                class="form-input"
+                                data-tweet-id="${ post.id }"
+                                placeholder="Twitter|elonmusk|Dominos"
+                                value="${ post.tags !== null ? post.tags : "" }" />
+                        </div>
+
+                        <!-- THE PRIORITY -->
+                        <input
+                            type="number"
+                            name="priority"
+                            class="form-input hidden"
+                            data-tweet-id="${ post.id }"
+                            value="${ post.priority }" />
+
+                        <!-- THE FORM DIVISION -->
+                        <div class="form-division">
+                            <!-- THE MEDIA -->
+                            <section class="form-media" data-tweet-id="${ post.id }">
+                                <!-- THE DROP ZONE -->
+                                <div class="form-media-drop-zone" data-tweet-id="${ post.id }">Drop media here!</div>
+
+                                <!-- THE GALLERY -->
+                                <div class="form-media-gallery hidden" data-tweet-id="${ post.id }"></div>
+
+                                <!-- THE SECONDARY GALLERY -->
+                                <div class="form-media-gallery secondary" data-tweet-id="${ post.id }">
+                                    <input
+                                        type="text"
+                                        name="images"
+                                        class="form-input hidden"
+                                        data-tweet-id="${ post.id }"
+                                        value='${ post.media }' />
+                                </div>
+
+                                <!-- THE FILE INPUT -->
+                                <input type="file" name="files" class="hidden" data-tweet-id="${ post.id }" multiple />
+
+                                <!-- THE MEDIA INPUT -->
+                                <input type="text" name="media" class="form-input hidden" data-tweet-id="${ post.id }" />
+                            </section>
+                        </div>
+
+                        <!-- THE FORM DIVISION -->
+                        <div class="form-division">
+                            <!-- THE TIME -->
+                            <input
+                                type="datetime-local"
+                                name="time"
+                                class="form-input"
+                                data-tweet-id="${ post.id }"
+                                value="${ post.time !== null ? post.time : "2000-01-01T00:00" }" />
+                        </div>
+
+                        <!-- THE BUTTONS -->
+                        <section class="reorder-buttons">
+                            <button onclick="event.preventDefault(); moveOrderUp(${i})"><i class="fa-regular fa-square-caret-up"></i></button>
+                            <button onclick="event.preventDefault(); moveOrderDown(${i})"><i class="fa-regular fa-square-caret-down"></i></button>
+                        </section>
+                    </div>
+                </form>
+            `;
+
+            articles += article;
+        }
+
+        document.getElementById('posts').innerHTML = articles;
+
+        (() => {
+            const imagesInputs = document.querySelectorAll('input[name="images"]');
+
+            imagesInputs.forEach((imagesInput) => {
+                const id = imagesInput.getAttribute('data-tweet-id');
+                const images =
+                    imagesInput.value !== 'null' && imagesInput.value !== '' ? JSON.parse(imagesInput.value) : null;
+
+                const secondaryGallery = document.querySelector(`.form-media-gallery.secondary[data-tweet-id="${id}"]`);
+
+                if (images) {
+                    images.forEach((image, index) => {
+                        const img = document.createElement('img');
+                        img.src = `/media/${image}`;
+                        img.alt = `Image #${index + 1}`;
+                        img.setAttribute('data-tweet-id', id);
+
+                        secondaryGallery.appendChild(img);
+                    });
+                    document
+                        .querySelector(`.form-media-gallery.secondary[data-tweet-id="${id}"]`)
+                        .classList.remove('hidden');
+                }
+            });
+        })();
+    },
+
     retweets: (posts) => {
         let articles = '';
 
