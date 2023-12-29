@@ -71,7 +71,7 @@ const tweet = async (message, media, tags) => {
     }
 
     // Attach the images
-    if (media.length > 0 && media[0] !== '') {
+    if (media && media !== null && media.length > 0 && media[0] !== '') {
         try {
             const fileInput = 'input[type="file"][data-testid="fileInput"][multiple]';
             await page.waitForSelector(fileInput);
@@ -101,10 +101,19 @@ const tweet = async (message, media, tags) => {
         }
     }
 
-    tags = tags.split('|');
+    if (tags) tags = tags.split('|');
 
     // Set the tags
-    if (tags.length > 0 && tags[0] !== '') {
+    if (
+        tags &&
+        tags !== null &&
+        tags.length > 0 &&
+        tags[0] !== '' &&
+        media &&
+        media !== null &&
+        media.length > 0 &&
+        media[0] !== ''
+    ) {
         try {
             await page.evaluate('window.scrollTo(0, 250)');
             await sleep(1500);
@@ -168,7 +177,9 @@ const tweet = async (message, media, tags) => {
     await sleep(3000);
 
     const [sendNowButton] = await page.$x("//span[contains(., 'Send now')]");
-    if (sendNowButton) await sendNowButton.click();
+    if (sendNowButton) {
+        await sendNowButton.click();
+    }
 
     await sleep(5000);
     await browser.close();

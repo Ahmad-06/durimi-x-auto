@@ -41,3 +41,5 @@ app.use(require(path.join(__dirname, 'router', 'router')));
 app.listen(PORT, () => {
     console.log(`X-Auto is running at: https://${HOST}:${PORT}`);
 });
+
+require(path.join(__dirname, 'cron'));
