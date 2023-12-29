@@ -5,6 +5,10 @@ module.exports = timesheet;
 
 const openDB = require('../../../data/openDB');
 
+timesheet.get('/', (req, res) => {
+    res.redirect('/timesheet/tweet');
+});
+
 timesheet.get('/:type', async (req, res) => {
     const types = ['tweet', 'retweet'];
 
