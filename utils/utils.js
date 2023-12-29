@@ -2,6 +2,14 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { nanoid } = require('nanoid');
 
+const sleep = (millisec) => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve('');
+        }, millisec);
+    });
+};
+
 const isValidURL = (url) => {
     let urlRegEx = new RegExp(
         '^' +
@@ -158,6 +166,8 @@ const saveBase64MediaToFileSystem = (base64Images = null) => {
 };
 
 module.exports = {
+    sleep,
+
     isValidURL,
     isValidRetweetURL,
 

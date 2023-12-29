@@ -138,3 +138,6 @@ dist
 
 # Media files
 public/media
+
+# Puppeteer data
+userData/
