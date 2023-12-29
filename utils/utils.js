@@ -64,6 +64,57 @@ const isValidDateTime = (datetime) => {
     return true;
 };
 
+const isValidDay = (day) => {
+    const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+    const days_min = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+    if (!days.includes(day.toLowerCase()) && !days_min.includes(day.toLowerCase())) return false;
+
+    return true;
+};
+
+const isValidTime = (time, format) => {
+    if (format === 12) {
+        const [TIME, MODIFIER] = time.split(' ');
+        const [HOURS, MINUTES] = TIME.split(':');
+        const hours = parseInt(HOURS);
+        const minutes = parseInt(MINUTES);
+
+        if (!['am', 'pm'].includes(MODIFIER.toLowerCase())) return false;
+        if (hours < 0 || hours > 12) return false;
+        if (minutes < 0 || minutes > 59) return false;
+        return true;
+    }
+
+    if (format === 24) {
+        const [HOURS, MINUTES] = time.split(':');
+        const hours = parseInt(HOURS);
+        const minutes = parseInt(MINUTES);
+
+        if (hours < 0 || hours > 23) return false;
+        if (minutes < 0 || minutes > 59) return false;
+        return true;
+    }
+
+    return false;
+};
+
+const convert24HourTimeTo12HourTime = (time) => {
+    const [hours, minutes] = time.split(':');
+    const parsedHours = parseInt(hours, 10);
+
+    if (parsedHours === 0) {
+        return `12:${minutes} AM`;
+    } else if (parsedHours < 12) {
+        return `${parsedHours}:${minutes} AM`;
+    } else if (parsedHours === 12) {
+        return `12:${minutes} PM`;
+    } else {
+        const adjustedHours = parsedHours - 12;
+        return `${adjustedHours}:${minutes} PM`;
+    }
+};
+
 const isJSONParsable = (input) => {
     try {
         JSON.parse(input);
@@ -110,7 +161,10 @@ module.exports = {
     isValidURL,
     isValidRetweetURL,
 
+    isValidDay,
+    isValidTime,
     isValidDateTime,
+    convert24HourTimeTo12HourTime,
 
     isJSONParsable,
 

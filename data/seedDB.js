@@ -53,6 +53,27 @@ const seedDB = async () => {
         }
     }
 
+    try {
+        const createTimesheetTable = `
+            CREATE TABLE IF NOT EXISTS timesheet
+            (
+                id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                type TEXT NOT NULL,
+                day TEXT NOT NULL,
+                time TEXT NOT NULL,
+                time_formatted TEXT NOT NULL,
+                priority INTEGER NOT NULL
+            );
+        `;
+
+        await db.exec(createTimesheetTable);
+    } catch (err) {
+        if (err) {
+            await db.close();
+            return console.error('There was an error when trying to create the default timesheet table: ', err);
+        }
+    }
+
     db.close();
 };
 

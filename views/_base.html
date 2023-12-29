@@ -95,6 +95,7 @@
             let apiMiscURL = `${apiURL}/misc`;
             let apiTweetsURL = `${apiURL}/tweets`;
             let apiRetweetsURL = `${apiURL}/retweets`;
+            let apiTimesheetURL = `${apiURL}/timesheet`;
 
             let api = {
                 misc: {
@@ -123,6 +124,15 @@
                     delete: `${apiRetweetsURL}/delete`,
                     publish: `${apiRetweetsURL}/publish`,
                     reOrder: `${apiRetweetsURL}/re-order`,
+                },
+                timesheet: {
+                    get: {
+                        all: `${apiTimesheetURL}/all`,
+                    },
+                    create: `${apiTimesheetURL}/create`,
+                    update: `${apiTimesheetURL}/update`,
+                    delete: `${apiTimesheetURL}/delete`,
+                    instant: `${apiTimesheetURL}/instant`,
                 },
             };
         </script>
