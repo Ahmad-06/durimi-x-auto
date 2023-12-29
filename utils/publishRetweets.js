@@ -1,3 +1,4 @@
+const fs = require('node:fs');
 const path = require('node:path');
 
 const publish = {
@@ -82,11 +83,11 @@ const publishRetweets = async (retweets, db) => {
             },
         };
 
-        const errored_posts = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'errored_posts.json')));
+        const errored_posts = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'errored_retweets.json')));
 
         errored_posts.push(endest_result);
 
-        fs.writeFileSync(path.join(__dirname, '..', 'data', 'errored_posts.json'), JSON.stringify(errored_posts));
+        fs.writeFileSync(path.join(__dirname, '..', 'data', 'errored_retweets.json'), JSON.stringify(errored_posts));
 
         return endest_result;
     } else {
