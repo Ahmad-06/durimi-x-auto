@@ -7,7 +7,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 try {
-    fs.writeFileSync('./data/errored_posts.json', JSON.stringify([]), { flag: 'wx' });
+    fs.writeFileSync('./data/errored_retweets.json', JSON.stringify([]), { flag: 'wx' });
+} catch (err) {
+    if (err.code !== 'EEXIST') console.error(err);
+}
+
+try {
+    fs.writeFileSync('./data/errored_tweets.json', JSON.stringify([]), { flag: 'wx' });
 } catch (err) {
     if (err.code !== 'EEXIST') console.error(err);
 }

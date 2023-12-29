@@ -144,3 +144,5 @@ userData/
 
 # Errored posts
 errored_posts.json
+errored_tweets.json
+errored_retweets.json
