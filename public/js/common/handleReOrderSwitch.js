@@ -1,3 +1,3 @@
 const handleReOrderSwitch = (type, kind) => {
-    window.open(`/${kind}/re-order/${type}`, '_blank');
+    window.open(`/${type}/re-order/${kind}`, '_blank');
 };
