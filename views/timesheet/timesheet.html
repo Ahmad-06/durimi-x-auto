@@ -10,8 +10,14 @@
 
 <!-- THE CONTENT BLOCK -->
 {% block content %}
+<!-- THE TIMESHEET SWITCHER -->
+<select name="timesheet" id="timesheet-type-switch">
+    <option value="tweet"{% if type == 'tweet' %} selected="selected" {% endif %}>Tweet Timesheet</option>
+    <option value="retweet"{% if type == 'retweet' %} selected="selected" {% endif %}>Retweet Timesheet</option>
+</select>
+
 <!-- THE TIMESHEET ACTIONS -->
-<div id="timesheet-actions">
+<div id="timesheet-actions" {% if timeslots.length > 0 %} class="not-empty" {% endif %}>
     {% if timeslots.length > 0 %}
     <!-- THE TIMESHEET DELETE -->
     <button class="timesheet-action timesheet-delete" onclick="openModal('modal-purge')">
@@ -102,4 +108,5 @@
 <script src="/js/timesheet/handleDeleteTimeslot.js"></script>
 <script src="/js/timesheet/handlePurgeTimesheet.js"></script>
 <script src="/js/timesheet/handleInstantTimesheet.js"></script>
+<script src="/js/timesheet/handleTimesheetPageSwitch.js"></script>
 {% endblock %}

@@ -9,13 +9,38 @@ body {
             flex-direction: column;
             gap: 25px;
 
+            #timesheet-type-switch {
+                height: 50px;
+                padding: 0 25px;
+                width: 100%;
+                max-width: 250px;
+                border: 3px solid $yellow;
+                color: $yellow;
+                color-scheme: dark;
+                appearance: none;
+                background-color: $dark;
+                cursor: pointer;
+                outline: none;
+                background-image: url('/images/chevron-down-red.svg');
+                background-size: 15px 15px;
+                background-position-x: calc(100% - 25px);
+                background-position-y: calc((50px - 22px) / 2);
+                background-repeat: no-repeat;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+
             #timesheet-actions {
                 height: 50px;
                 width: 125px;
                 display: grid;
                 display: grid;
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1fr;
                 grid-gap: 25px;
+
+                &.not-empty {
+                    grid-template-columns: 1fr 1fr;
+                }
 
                 .timesheet-action {
                     color: $blue;
