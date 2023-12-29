@@ -106,6 +106,8 @@ const tweet = async (message, media, tags) => {
     // Set the tags
     if (tags.length > 0 && tags[0] !== '') {
         try {
+            await page.evaluate('window.scrollTo(0, 250)');
+            await sleep(1500);
             const tagOpen = 'a[aria-label="Tag people"][href="/compose/tweet/tags"]';
             await page.waitForSelector(tagOpen);
             await page.click(tagOpen);
