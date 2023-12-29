@@ -5,7 +5,15 @@ module.exports = timesheet;
 
 const openDB = require('../../../data/openDB');
 
-timesheet.get('/', async (req, res) => {
+timesheet.get('/:type', async (req, res) => {
+    const types = ['tweet', 'retweet'];
+
+    if (!types.includes(req.params.type)) {
+        return res.render('errorpage', {
+            message: 'No such timesheet found.',
+        });
+    }
+
     // Connect to the database.
     const db = await openDB();
 
@@ -14,9 +22,10 @@ timesheet.get('/', async (req, res) => {
     let timeslots;
 
     try {
-        const query = 'SELECT * FROM timesheet ORDER BY day, priority';
+        const query = 'SELECT * FROM timesheet WHERE type = ? ORDER BY day, priority';
+        const params = [req.params.type];
 
-        timeslots = await db.all(query);
+        timeslots = await db.all(query, params);
     } catch (err) {
         if (err) {
             await db.close();
@@ -25,5 +34,5 @@ timesheet.get('/', async (req, res) => {
         }
     }
 
-    res.render('timesheet/timesheet', { days, timeslots });
+    res.render('timesheet/timesheet', { days, timeslots, type: req.params.type, types });
 });

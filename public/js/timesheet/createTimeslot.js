@@ -4,11 +4,13 @@ const createTimeslot = async (route) => {
     const idInput = document.getElementById('modal-update-id');
     const dayInput = document.getElementById(`modal-${route}-day`);
     const timeInput = document.getElementById(`modal-${route}-time`);
+    const typeInput = document.getElementById(`modal-${route}-type`);
 
     const timeslot = {
         id: idInput.value,
         day: dayInput.value,
         time: timeInput.value,
+        type: typeInput.value,
     };
 
     const resp = await fetch(apiEndpoint, {
@@ -22,5 +24,5 @@ const createTimeslot = async (route) => {
 
     if (!success) return handleError('There was an error when publishing the timeslot to the database.', error);
 
-    window.location.href = '/timesheet';
+    window.location.href = `/timesheet/${typeInput.value}`;
 };

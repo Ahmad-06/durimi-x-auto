@@ -38,7 +38,9 @@ const createInstantTimeslots = async () => {
 
     const time = document.getElementById('modal-instant-time').value;
 
-    const timesheet = { days: checkedDays, time };
+    const type = document.getElementById('modal-instant-type').value;
+
+    const timesheet = { days: checkedDays, time, type };
 
     const resp = await fetch(apiEndpoint, {
         method: 'POST',
@@ -53,5 +55,5 @@ const createInstantTimeslots = async () => {
 
     if (success && error) return handleError('There was an error when creating the timeslots in the database.', error);
 
-    window.location.href = '/timesheet';
+    window.location.href = `/timesheet/${type}`;
 };

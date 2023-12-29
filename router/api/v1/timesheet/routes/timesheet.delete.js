@@ -9,14 +9,38 @@ DELETE.delete('/all', async (req, res) => {
     // Connect to the database.
     const db = await openDB();
 
+    const type = req?.body?.type ? req?.body?.type : null;
+
+    // Verify if the type submitted by the user is correct.
+    const types = ['tweet', 'retweet'];
+    if (type === null || !types.includes(type)) {
+        await db.close();
+
+        return res.status(400).json({
+            success: false,
+            data: null,
+            error: {
+                code: 400,
+                type: 'Invalid user input.',
+                route: '/api/v1/timesheet/delete/all',
+                moment: 'Validating time slot type submitted by the user.',
+                message:
+                    "The time slot type you submitted is invalid. Make sure it's one of the two types: tweet OR retweet.",
+            },
+        });
+    }
+
     try {
         const query = `
             DELETE
                 FROM
-                    Timesheet;
+                    Timesheet
+                WHERE
+                    type = ?;
         `;
+        const params = [type];
 
-        await db.run(query);
+        await db.run(query, params);
 
         await db.close();
 

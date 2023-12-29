@@ -2,6 +2,7 @@ const deleteTimeslot = async () => {
     const apiEndpoint = api.timesheet.delete;
 
     const idInput = document.getElementById('modal-delete-id');
+    const typeInput = document.getElementById('modal-delete-type');
 
     const timeslot = { id: idInput.value };
 
@@ -16,5 +17,5 @@ const deleteTimeslot = async () => {
 
     if (!success) return handleError('There was an error when deleting the timeslot from the database.', error);
 
-    window.location.href = '/timesheet';
+    window.location.href = `/timesheet/${typeInput.value}`;
 };

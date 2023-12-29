@@ -6,6 +6,9 @@
     <!-- THE MODAL HEADING -->
     <h3 id="modal-create-heading" class="modal-heading">Monday</h3>
 
+    <!-- THE TYPE -->
+    <input type="text" name="type" id="modal-create-type" class="modal-input hidden" value="{{ type }}" />
+
     <!-- THE DAY -->
     <input type="text" name="day" id="modal-create-day" class="modal-input hidden" />
 
@@ -29,6 +32,9 @@
 
     <!-- THE ID -->
     <input type="number" name="id" id="modal-update-id" class="modal-input hidden" />
+
+    <!-- THE TYPE -->
+    <input type="text" name="type" id="modal-update-type" class="modal-input hidden" value="{{ type }}" />
 
     <!-- THE DAY -->
     <input type="text" name="day" id="modal-update-day" class="modal-input hidden" />
@@ -57,6 +63,9 @@
     <!-- THE DAY -->
     <input type="text" name="day" id="modal-delete-day" class="modal-input hidden" />
 
+    <!-- THE TYPE -->
+    <input type="text" name="type" id="modal-delete-type" class="modal-input hidden" value="{{ type }}" />
+
     <!-- THE TIME -->
     <input placeholder="--:-- --" type="time" name="time" id="modal-delete-time" class="modal-input time-pickable" />
 
@@ -81,6 +90,9 @@
         reversed!
     </p>
 
+    <!-- THE TYPE -->
+    <input type="text" name="type" id="modal-purge-type" class="modal-input hidden" value="{{ type }}" />
+
     <!-- THE MODAL BUTTONS -->
     <section id="modal-purge-buttons" class="modal-buttons">
         <!-- THE CANCEL BUTTON -->
@@ -95,6 +107,9 @@
 <div id="modal-instant" class="modal hidden">
     <!-- THE MODAL HEADING -->
     <h3 id="modal-instant-heading" class="modal-heading">Instant Timeslot(s)</h3>
+
+    <!-- THE TYPE -->
+    <input type="text" name="type" id="modal-instant-type" class="modal-input hidden" value="{{ type }}" />
 
     <!-- THE TIME -->
     <input placeholder="--:-- --" type="time" name="time" id="modal-instant-time" class="modal-input time-pickable" />

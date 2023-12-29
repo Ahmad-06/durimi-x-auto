@@ -14,9 +14,10 @@ CREATE.post('/', async (req, res) => {
     // Get user input.
     let day = req?.body?.day ? req?.body?.day : null;
     const time = req?.body?.time ? req?.body?.time : null;
+    const type = req?.body?.type ? req?.body?.type : null;
 
     // Check if user has submitted all required fields.
-    if (day === null || time === null) {
+    if (day === null || time === null || type === null) {
         await db.close();
 
         return res.status(400).json({
@@ -28,7 +29,26 @@ CREATE.post('/', async (req, res) => {
                 route: '/api/v1/timesheet/create',
                 moment: 'Checking if user submitted all required fields.',
                 message:
-                    'The day or time are missing from your request. Please make sure to provide both a day and a time.',
+                    'The day, time, or type are missing from your request. Please make sure to provide a day, a time, and a type.',
+            },
+        });
+    }
+
+    // Verify if the type submitted by the user is correct.
+    const types = ['tweet', 'retweet'];
+    if (!types.includes(type)) {
+        await db.close();
+
+        return res.status(400).json({
+            success: false,
+            data: null,
+            error: {
+                code: 400,
+                type: 'Invalid user input.',
+                route: '/api/v1/timesheet/create',
+                moment: 'Validating time slot type submitted by the user.',
+                message:
+                    "The time slot type you submitted is invalid. Make sure it's one of the two types: tweet OR retweet.",
             },
         });
     }
@@ -97,8 +117,8 @@ CREATE.post('/', async (req, res) => {
     const priority = parseInt(time.replace(':', ''));
 
     try {
-        const query = 'SELECT * FROM timesheet WHERE day = ? AND time = ?';
-        const params = [day, time];
+        const query = 'SELECT * FROM timesheet WHERE day = ? AND time = ? AND type = ?';
+        const params = [day, time, type];
 
         const timeslot = await db.get(query, params);
 
@@ -139,13 +159,14 @@ CREATE.post('/', async (req, res) => {
         const query = `
             INSERT INTO timesheet
             (
+                type,
                 day,
                 time,
                 time_formatted,
                 priority
-            ) VALUES (?, ?, ?, ?);
+            ) VALUES (?, ?, ?, ?, ?);
         `;
-        const params = [day, time, time_formatted, priority];
+        const params = [type, day, time, time_formatted, priority];
 
         await db.run(query, params);
 
