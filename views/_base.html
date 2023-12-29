@@ -99,6 +99,7 @@
 
             let api = {
                 misc: {
+                    login: `${apiMiscURL}/login`,
                     indicator: `${apiMiscURL}/indicator`,
                 },
                 tweets: {
@@ -140,6 +141,7 @@
         <script src="/js/base/handleError.js"></script>
         <script src="/js/base/handleGetInput.js"></script>
         <script src="/js/base/handleIndicator.js"></script>
+        <script src="/js/base/handleLogin.js"></script>
 
         <!-- THE SCRIPTS BLOCK -->
         {% block scripts %} {% endblock %}
