@@ -1,9 +1,16 @@
 require('dotenv').config();
 
+const fs = require('node:fs');
 const njk = require('nunjucks');
 const path = require('node:path');
 const express = require('express');
 const bodyParser = require('body-parser');
+
+try {
+    fs.writeFileSync('./data/errored_posts.json', JSON.stringify([]), { flag: 'wx' });
+} catch (err) {
+    if (err.code !== 'EEXIST') console.error(err);
+}
 
 const seedDB = require(path.join(__dirname, 'data', 'seedDB'));
 seedDB();
